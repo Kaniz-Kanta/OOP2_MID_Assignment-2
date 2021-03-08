@@ -9,105 +9,68 @@ namespace BankingSystem
 {
     class Bank
     {
-        private SavingsAccount[] saving;
-        private CheckingAccount[] checking;
-        public SavingsAccount[] Saving
+        private string bankName;
+        private Account[] myBank = new Account[10];
+        public Bank(string name)
         {
-            set { this.saving = value; }
-            get { return this.saving; }
+            this.bankName = name;
+            Console.WriteLine(this.Name + "\n");
         }
-        public CheckingAccount[] Checking
+        public string Name
         {
-            set { this.checking = value; }
-            get { return this.checking; }
+            set { this.bankName = value; }
+            get { return this.bankName; }
         }
-        public void CreateSavingsAccount(SavingsAccount account)
+        public Account[] MyBank
         {
-            for (int i = 0; i < saving.Length; i++)
-            {
-                if (saving[i] == null)
-                {
-                    saving[i] = account;
-                    Console.WriteLine("-----------------Your Savings Account Created Succesfully---------------");
-                    break;
-                }
-            }
-        }
-        public void CreateCheckingAccount(CheckingAccount account)
-        {
-            for (int i = 0; i < checking.Length; i++)
-            {
-                if (checking[i] == null)
-                {
-                    checking[i] = account;
-                    Console.WriteLine("-----------------Your Checking Account Created Succesfully---------------");
-                    break;
-                }
-            }
+            set { this.myBank = value; }
+            get { return this.myBank; }
         }
 
-        public void SavingsAccountTransaction(int transactionType, [Optional] double amount, [Optional] Account receiver)
+        public void AddAccount(Account account)
         {
-            Console.WriteLine("Enter a Account Number: ");
-            int accountNumber = Convert.ToInt32(Console.ReadLine());
-            bool check = false;
-            for (int i = 0; i < saving.Length; i++)
+            for (int i = 0; i < myBank.Length; i++)
             {
-                if (saving[i] == null)
+                if (myBank[i] == null)
                 {
-                    continue;
-                }
-                else if (transactionType == 1 && saving[i].GetAccountNumber() == accountNumber)
-                {
-                    saving[i].Deposite(amount);
-                    check = true;
+                    myBank[i] = account;
+                    Console.WriteLine("Account Created Successfully!!!!!");
+                    myBank[i].GanerateAccountNumber();
+                    myBank[i].ShowAccountInformation();
                     break;
                 }
-                else if (transactionType == 2 && saving[i].GetAccountNumber() == accountNumber)
-                {
-                    saving[i].Withdraw(amount);
-                    check = true;
-                    break;
-                }
-                else if (transactionType == 3 && saving[i].GetAccountNumber() == accountNumber)
-                {
-                    saving[i].Transfer(receiver, amount);
-                    check = true;
-                    break;
-                }
-                
-            }
-            if(check==false)
-            {
-                Console.WriteLine("You Choose a Wrong Number!!!! ");
             }
         }
-        public void CheckingAccountTransaction(int transactionType, [Optional] double amount, [Optional] Account receiver)
+        
+
+        public void Transaction(int transactionType, [Optional] double amount, [Optional] int receiverAccountNumber)
         {
             Console.WriteLine("Enter a Account Number: ");
             int accountNumber = Convert.ToInt32(Console.ReadLine());
+            int iReceiver = 0;
             bool check = false;
-            for (int i = 0; i < checking.Length; i++)
+            for (int i = 0; i < myBank.Length; i++)
             {
-                if (checking[i] == null)
+                if (myBank[i] == null)
                 {
                     continue;
                 }
-                else if (transactionType == 1 && checking[i].GetAccountNumber() == accountNumber)
+                else if (transactionType == 1 && myBank[i].AccountNumber == accountNumber)
                 {
-                    checking[i].Deposite(amount);
+                    myBank[i].Deposite(amount);
                     check = true;
                     break;
                 }
-                else if (transactionType == 2 && checking[i].GetAccountNumber() == accountNumber)
+                else if (transactionType == 2 && myBank[i].AccountNumber == accountNumber)
                 {
-                    checking[i].Withdraw(amount);
+                    myBank[i].Withdraw(amount);
                     check = true;
                     break;
                 }
-                else if (transactionType == 3 && checking[i].GetAccountNumber() == accountNumber)
+                else if (transactionType == 3 && myBank[i].AccountNumber == accountNumber && myBank[i].AccountNumber == receiverAccountNumber)
                 {
-                    checking[i].Transfer(receiver, amount);
+                    iReceiver = i;
+                    myBank[i].Transfer(myBank[iReceiver], amount);
                     check = true;
                     break;
                 }
@@ -118,27 +81,16 @@ namespace BankingSystem
                 Console.WriteLine("You Choose a Wrong Number!!!! ");
             }
         }
-        public void PrintSavingsAccountDetails()
+        public void ShowTransaction(int accountNumber)
         {
-            for (int i = 0; i < saving.Length; i++)
+            for (int i = 0; i < myBank.Length; i++)
             {
-                if (saving[i] == null)
+                if (myBank[i].AccountNumber == accountNumber)
                 {
-                    continue;
+                    Console.WriteLine("Total Transaction:{0}\nCurrent Balance:{1}", myBank[i].Transactions, myBank[i].Balance);
                 }
-                saving[i].ShowAccountInformation();
             }
         }
-        public void PrintCheckingAccountDetails()
-        {
-            for (int i = 0; i < checking.Length; i++)
-            {
-                if (checking[i] == null)
-                {
-                    continue;
-                }
-                checking[i].ShowAccountInformation();
-            }
-        }
+        
     }
 }

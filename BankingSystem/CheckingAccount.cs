@@ -4,36 +4,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace BankingSystem
 {
-    class CheckingAccount:Account
+    public class CheckingAccount : Account
     {
-        public CheckingAccount(int accountNumber, string userName, double balance, Address address) : base(accountNumber, userName, balance, address);
+
+        public override void Withdraw(double amount)
         {
+            if (base.Balance >= amount)
+            {
+                base.Balance = base.Balance - amount;
+                Console.WriteLine(amount + " Withdraw Successfully!!");
+                Console.WriteLine("Your Current Balance is---> " + base.Balance);
+                TransactionIncrement();
+            }
+            else
+            {
+                Console.WriteLine("Withdraw not possible!!! \n You must have minimum 100 taka in your SavingsAccount");
+            }
         }
-        override public void Withdraw(double amount)
+        public override void ShowAccountInformation()
         {
-        if (base.balance >= amount)
-        {
-            base.balance = base.balance - amount;
-            Console.WriteLine(amount + " Withdraw Successfully!!");
+            base.ShowAccountInformation();
         }
-        else
-        {
-            Console.WriteLine("Withdraw not possible!!! \n You must have minimum 100 taka in your SavingsAccount");
-        }
-        }
-        public void Deposite(double amount)
-        {
-               base.balance = base.balance + amount;
-               Console.WriteLine(amount + " Taka Deposited Successfully!!");
-        }
-        public void Transfer(Account receiver, double amount)
-        {
-               receiver.Deposite(amount);
-               base.Withdraw(amount);
-               Console.WriteLine(amount + " Taka Transfered Successfully!!");
-        }
-   
-}
+
+
+
+    }
+
 }

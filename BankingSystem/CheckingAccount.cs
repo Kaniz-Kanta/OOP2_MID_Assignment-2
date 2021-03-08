@@ -10,7 +10,10 @@ namespace BankingSystem
 {
     public class CheckingAccount : Account
     {
-        
+        public CheckingAccount(int accountNumber, string userName, string dateOfBirth, double balance, string address) : base(accountNumber, userName, dateOfBirth, balance, address)
+        {
+
+        }
         public override void Withdraw(double amount)
         {
             if (Balance >= amount)

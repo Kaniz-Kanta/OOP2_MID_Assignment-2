@@ -11,11 +11,11 @@ namespace BankingSystem
     {
         private string bankName;
         private Account[] myBank;
-        public Bank(string name,int size)
+        public Bank(string name, int size)
         {
             this.bankName = name;
             myBank = new Account[size];
-            Console.WriteLine(this.Name+"\n");
+            Console.WriteLine(this.Name + "\n");
         }
         public string Name
         {
@@ -36,7 +36,6 @@ namespace BankingSystem
                 {
                     myBank[i] = account;
                     Console.WriteLine("Account Created Successfully!!!!!");
-                    myBank[i].GanerateAccountNumber();
                     myBank[i].ShowAccountInformation();
                     break;
                 }
@@ -71,7 +70,7 @@ namespace BankingSystem
 
         public void Transaction(int transactionType, [Optional] double amount, [Optional] int receiverAccountNumber)
         {
-            
+
             switch (transactionType)
             {
                 case 1:
@@ -84,7 +83,7 @@ namespace BankingSystem
                             {
                                 continue;
                             }
-                            else if (myBank[i].AccountNumber == accountNumber)
+                            else if (myBank[i].GetAccountNumber() == accountNumber)
                             {
                                 myBank[i].Deposite(amount);
                                 Console.WriteLine(amount + " Taka Deposited Successfully!!");
@@ -103,7 +102,7 @@ namespace BankingSystem
                             {
                                 continue;
                             }
-                            else if (myBank[i].AccountNumber == accountNumber)
+                            else if (myBank[i].GetAccountNumber() == accountNumber)
                             {
                                 myBank[i].Withdraw(amount);
                                 Console.WriteLine(amount + " Withdraw Successfully!!");
@@ -117,14 +116,14 @@ namespace BankingSystem
                     {
                         Console.WriteLine("Enter Senders Account Number: ");
                         int senderAccountNumber = Convert.ToInt32(Console.ReadLine());
-                        int receiverIndex=0;
+                        int receiverIndex = 0;
                         for (int i = 0; i < myBank.Length; i++)
                         {
                             if (myBank[i] == null)
                             {
                                 continue;
                             }
-                            else if (myBank[i].AccountNumber == receiverAccountNumber)
+                            else if (myBank[i].GetAccountNumber() == receiverAccountNumber)
                             {
                                 receiverIndex = i;
                                 break;
@@ -136,7 +135,7 @@ namespace BankingSystem
                             {
                                 continue;
                             }
-                            else if (myBank[i].AccountNumber == senderAccountNumber)
+                            else if (myBank[i].GetAccountNumber() == senderAccountNumber)
                             {
                                 myBank[i].Transfer(myBank[receiverIndex], amount);
                                 Console.WriteLine(amount + " Taka Transfered Successfully!!");
@@ -150,15 +149,15 @@ namespace BankingSystem
         }
         public void ShowTransaction(int accountNumber)
         {
-            for(int i = 0; i < myBank.Length; i++)
+            for (int i = 0; i < myBank.Length; i++)
             {
-                if (myBank[i].AccountNumber == accountNumber)
+                if (myBank[i].GetAccountNumber() == accountNumber)
                 {
                     Console.WriteLine("Total Transaction:{0}\nCurrent Balance:{1}", myBank[i].Transactions, myBank[i].Balance);
                 }
             }
         }
-       public void PrintAllAccountDetails()
+        public void PrintAllAccountDetails()
         {
             for (int i = 0; i < myBank.Length; i++)
             {

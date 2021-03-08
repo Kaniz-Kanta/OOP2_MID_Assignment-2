@@ -9,23 +9,25 @@ namespace BankingSystem
 {
     public class Account
     {
-        private  int accountNumber;
+        private int accountNumber;
         private string userName;
         private double balance;
         private string address;
         private string dateOfBirth;
-        private int transactions=0;
+        private int transactions = 0;
         private string accountType;
-        public int start = 10000;
-
-        public void GanerateAccountNumber()
+       
+        public Account(int accountNumber, string userName, string dateOfBirth, double balance, string address)
         {
-            this.accountNumber = start;
-            start++;
+            this.accountNumber = accountNumber;
+            this.userName = userName;
+            this.dateOfBirth = dateOfBirth;
+            this.balance = balance;
+            this.address = address;
         }
-        public int AccountNumber
+        public int GetAccountNumber()
         {
-            get { return this.accountNumber; } 
+            return accountNumber;
         }
         public string UserName
         {
@@ -60,26 +62,26 @@ namespace BankingSystem
         {
             this.transactions++;
         }
-       public virtual void Withdraw(double amount)
+        virtual public void Withdraw(double amount)
         {
 
         }
         public void Deposite(double amount)
         {
-                this.balance = this.balance + amount;
-                TransactionIncrement();
+            this.balance = this.balance + amount;
+            TransactionIncrement();
         }
         public void Transfer(Account receiver, double amount)
         {
-             receiver.Deposite(amount);
-                Withdraw(amount);
-                TransactionIncrement();
+            receiver.Deposite(amount);
+            Withdraw(amount);
+            TransactionIncrement();
         }
         virtual public void ShowAccountInformation()
         {
             Console.WriteLine("-----------------Account Information ---------------\n");
             Console.WriteLine("Account No:{0}\nUserName:{1}\nAccount Type:{2}\nDate of Birth:{3}\nBalance:{4}\nAddress: {5}\n",
-                this.accountNumber, this.userName, this.accountType,this.dateOfBirth, this.balance,this.address);
+                accountNumber, this.userName, this.accountType, this.dateOfBirth, this.balance, this.address);
         }
     }
 }

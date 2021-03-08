@@ -10,11 +10,15 @@ namespace BankingSystem
 {
     public class SavingsAccount : Account
     {
+        public SavingsAccount(int accountNumber, string userName, string dateOfBirth, double balance, string address) : base(accountNumber, userName, dateOfBirth, balance, address)
+        {
+
+        }
         public override void Withdraw(double amount)
         {
-            if ((base.Balance-amount)>=100)
+            if ((base.Balance - amount) >= 100)
             {
-                Balance =Balance - amount;
+                Balance = Balance - amount;
                 TransactionIncrement();
             }
             else

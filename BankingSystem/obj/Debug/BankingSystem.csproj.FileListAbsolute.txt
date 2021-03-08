@@ -1,0 +1,7 @@
+C:\Users\user\OneDrive\Documents\C#\BankingSystem\obj\Debug\BankingSystem.csprojAssemblyReference.cache
+C:\Users\user\OneDrive\Documents\C#\BankingSystem\obj\Debug\BankingSystem.csproj.CoreCompileInputs.cache
+C:\Users\user\OneDrive\Documents\C#\BankingSystem\bin\Debug\BankingSystem.exe.config
+C:\Users\user\OneDrive\Documents\C#\BankingSystem\bin\Debug\BankingSystem.exe
+C:\Users\user\OneDrive\Documents\C#\BankingSystem\bin\Debug\BankingSystem.pdb
+C:\Users\user\OneDrive\Documents\C#\BankingSystem\obj\Debug\BankingSystem.exe
+C:\Users\user\OneDrive\Documents\C#\BankingSystem\obj\Debug\BankingSystem.pdb

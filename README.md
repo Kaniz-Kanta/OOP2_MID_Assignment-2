@@ -1,1 +1,2 @@
-# OOP2_MID_Assignment-2
+#Object Oriented Programming 2
+#Mid Term Lab Assignment-2

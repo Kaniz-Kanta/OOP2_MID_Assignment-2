@@ -16,10 +16,10 @@ namespace BankingSystem
         }
         public override void Withdraw(double amount)
         {
-            if ((base.Balance - amount) >= 100)
+            if ((base.Balance - amount) >= 100 && amount > 0)
             {
                 Balance = Balance - amount;
-                TransactionIncrement();
+                IncrementTransaction();
             }
             else
             {

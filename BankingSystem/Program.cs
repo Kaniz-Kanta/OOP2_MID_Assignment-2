@@ -47,7 +47,7 @@ namespace BankingSystem
                             for (int i = 0; i < size; i++)
                             {
 
-                                Console.WriteLine("\nAccount " + (i + 1) + "------>"); Console.WriteLine("\nAccount " + (i + 1) + "------");
+                                Console.WriteLine("\nAccount " + (i + 1) + "------>");
                                 Console.WriteLine("UserName: ");
                                 string userName = Console.ReadLine();
                                 Console.WriteLine("Date Of Birth: ");
@@ -69,7 +69,7 @@ namespace BankingSystem
                             int size = Convert.ToInt32(Console.ReadLine());
                             for (int i = 0; i < size; i++)
                             {
-                                Console.WriteLine("\nAccount " + (i + 1) + "------>"); Console.WriteLine("\nAccount " + (i + 1) + "------");
+                                Console.WriteLine("\nAccount " + (i + 1) + "------>");
                                 Console.WriteLine("UserName: ");
                                 string userName = Console.ReadLine();
                                 Console.WriteLine("Date Of Birth: ");

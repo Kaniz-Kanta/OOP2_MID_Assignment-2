@@ -16,14 +16,14 @@ namespace BankingSystem
         }
         public override void Withdraw(double amount)
         {
-            if (Balance >= amount)
+            if (Balance >= amount && amount > 0)
             {
                 Balance = Balance - amount;
-                TransactionIncrement();
+                IncrementTransaction();
             }
             else
             {
-                Console.WriteLine("Withdraw not possible!!! \n You must have minimum 100 taka in your SavingsAccount");
+                Console.WriteLine("Withdraw not possible!!!");
             }
         }
         public override void ShowAccountInformation()

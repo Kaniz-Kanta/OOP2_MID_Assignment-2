@@ -86,7 +86,7 @@ namespace BankingSystem
                             else if (myBank[i].GetAccountNumber() == accountNumber)
                             {
                                 myBank[i].Deposite(amount);
-                                Console.WriteLine(amount + " Taka Deposited Successfully!!");
+                                Console.WriteLine("Your Current Balance is---> " + myBank[i].Balance);
                                 break;
                             }
                         }
@@ -105,7 +105,6 @@ namespace BankingSystem
                             else if (myBank[i].GetAccountNumber() == accountNumber)
                             {
                                 myBank[i].Withdraw(amount);
-                                Console.WriteLine(amount + " Withdraw Successfully!!");
                                 Console.WriteLine("Your Current Balance is---> " + myBank[i].Balance);
                                 break;
                             }
@@ -139,7 +138,7 @@ namespace BankingSystem
                             {
                                 myBank[i].Transfer(myBank[receiverIndex], amount);
                                 Console.WriteLine(amount + " Taka Transfered Successfully!!");
-                                Console.WriteLine("Your Current Balance is---> " + myBank[i].Balance);
+                                Console.WriteLine("Senders Current Balance is---> " + myBank[i].Balance);
                                 break;
                             }
                         }
@@ -153,7 +152,7 @@ namespace BankingSystem
             {
                 if (myBank[i].GetAccountNumber() == accountNumber)
                 {
-                    Console.WriteLine("Total Transaction:{0}\nCurrent Balance:{1}", myBank[i].Transactions, myBank[i].Balance);
+                    Console.WriteLine("Total Transaction:{0}\nCurrent Balance:{1}", myBank[i].GetTransactions(), myBank[i].Balance);
                 }
             }
         }

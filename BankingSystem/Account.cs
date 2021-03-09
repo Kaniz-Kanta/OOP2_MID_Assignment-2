@@ -16,7 +16,7 @@ namespace BankingSystem
         private string dateOfBirth;
         private int transactions = 0;
         private string accountType;
-       
+        //public int start = 10000;
         public Account(int accountNumber, string userName, string dateOfBirth, double balance, string address)
         {
             this.accountNumber = accountNumber;
@@ -49,16 +49,16 @@ namespace BankingSystem
             get { return this.dateOfBirth; }
             set { this.dateOfBirth = value; }
         }
-        public int Transactions
+        public int GetTransactions()
         {
-            get { return this.transactions; }
+            return this.transactions;
         }
         public string AccountType
         {
             get { return this.accountType; }
             set { this.accountType = value; }
         }
-        public void TransactionIncrement()
+        public void IncrementTransaction()
         {
             this.transactions++;
         }
@@ -68,14 +68,28 @@ namespace BankingSystem
         }
         public void Deposite(double amount)
         {
-            this.balance = this.balance + amount;
-            TransactionIncrement();
+            if (amount > 0)
+            {
+                this.balance = this.balance + amount;
+                IncrementTransaction();
+            }
+            else
+            {
+                Console.WriteLine("Deposite not possible!!!!");
+            }
         }
         public void Transfer(Account receiver, double amount)
         {
-            receiver.Deposite(amount);
-            Withdraw(amount);
-            TransactionIncrement();
+            if (amount > 0 && amount <= balance)
+            {
+                receiver.Deposite(amount);
+                Withdraw(amount);
+                IncrementTransaction();
+            }
+            else
+            {
+                Console.WriteLine("Money transfer not possible!!!!");
+            }
         }
         virtual public void ShowAccountInformation()
         {
